@@ -12,7 +12,7 @@ package entity;
 public class Reader {
     private String firstname; 
     private String lastname;
-    private int phone;
+    private String phone;
     
     public Reader() {
         
@@ -34,12 +34,17 @@ public class Reader {
         this.lastname = lastname;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Reader{" + "firstname=" + firstname + ", lastname=" + lastname + ", phone=" + phone + '}';
     }
 
 }

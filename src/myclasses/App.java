@@ -11,6 +11,7 @@ import entity.History;
 import entity.Reader;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 
 /**
@@ -19,45 +20,41 @@ import java.util.GregorianCalendar;
  */
 public class App {
     public void run(){
-        System.out.println("Hello");
-        Book book = new Book();
-        book.setBookName("Voina i mir");
-        book.setReleaseYear(1828);
-        Author[] authors = new Author[1];
-        Author author = new Author();
-        author.setFirstname("Lev");
-        author.setLastname("Tolstoi");
-        author.setBirthYear(1828);
-        authors[0] = author;
-        book.setAuthors(authors);
-        System.out.printf("Создана книга: %s, автор: %s %s, год издания: %d%n",
-                book.getBookName(),
-                book.getAuthors()[0].getFirstname(),
-                book.getAuthors()[0].getLastname(),
-                book.getReleaseYear()
-        );
-    Reader reader = new Reader(); 
-    reader.setFirstname("Arthur");
-    reader.setLastname("Kosten");
-    reader.setPhone(45634563);
-        System.out.printf("Создан новый пользователь: %s %s, телефон %s%n",
-                           reader.getFirstname(),
-                           reader.getLastname(),
-                           reader.getPhone()
-        );
-        History history = new History();
-        history.setBook(book);
-        history.setReader(reader);
-        Calendar c = new GregorianCalendar();
-        history.setGivenBook(c.getTime());
-        System.out.printf("Читатель %s %s взял читать книгу \"%s\"%n, %s%n"
-                ,history.getReader().getFirstname()
-                ,history.getReader().getLastname()
-                ,history.getBook().getBookName()
-                ,history.getGivenBook()
-        
-        );
-        
-                           
+        String repeat = "yes";
+        Scanner scanner = new Scanner(System.in);
+        do{
+            System.out.println("Выберите номер задачи");
+            System.out.println("0: закрыть программу");
+            System.out.println("1: добавить пользователя");
+            System.out.println("2: добавить книгу");
+            int task = scanner.nextInt(); scanner.nextLine();
+            switch  (task)  {
+                case 0:
+                    repeat="no";
+                    break;
+                case 1:
+                    Reader reader = new Reader();
+                    System.out.println("Введите имя читателя:   ");
+                    reader.setFirstname(scanner.nextLine());
+                    System.out.println("Введитя фамилию читателя:    ");
+                    reader.setLastname(scanner.nextLine());
+                    System.out.println("Введите телефон читателя:   ");
+                    reader.setPhone(scanner.nextLine());
+                    System.out.println("Читатель инициирован:   "+reader.toString());
+                    break;
+                case 2:
+                    Book book = new Book();
+                    System.out.println("ведите название книги:    ");
+                    book.setBookName(scanner.nextLine());
+                    System.out.println("Введите год выпуска:    ");
+                    book.setReleaseYear(scanner.nextInt());
+                    System.out.println("Введите автора: ");
+                    book.setAuthors(scanner.nextLine());
+                default:
+                    System.out.println("Выберите номер из списка!");;
+            }
+            
+        }while("yes".equals(repeat));System.out.println("пока!");
+        }
     }
-}
+
